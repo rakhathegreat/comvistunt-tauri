@@ -1,15 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import type { RefObject } from "react";
 
 type DataInputProps = {
     value: string;
     onChange: (value: string) => void;
     onSubmit: () => void;
     loading?: boolean;
+    onFocus?: () => void;
+    inputRef?: RefObject<HTMLInputElement>;
 };
 
-export default function DataInput({ value, onChange, onSubmit, loading }: DataInputProps) {
+export default function DataInput({
+    value,
+    onChange,
+    onSubmit,
+    loading,
+    onFocus,
+    inputRef,
+}: DataInputProps) {
     const canSubmit = value.trim().length > 0 && !loading;
 
     return (
@@ -18,8 +28,10 @@ export default function DataInput({ value, onChange, onSubmit, loading }: DataIn
                 <div className="relative flex-1 w-full">
                     <Search strokeWidth={2.5} className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                     <Input
+                        ref={inputRef}
                         value={value}
                         onChange={(e) => onChange(e.target.value)}
+                        onFocus={onFocus}
                         onKeyDown={(e) => {
                             if (e.key === "Enter" && canSubmit) onSubmit();
                         }}

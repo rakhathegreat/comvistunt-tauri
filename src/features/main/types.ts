@@ -5,3 +5,5 @@ export type ChildRecord = {
     gender?: string | null;
     umur_bulan?: number | null;
 };
+
+export type IfaceIp = { iface: string; ip: string };

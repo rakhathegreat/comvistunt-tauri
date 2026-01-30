@@ -17,8 +17,8 @@ export default function ResultPage(props: PageProps) {
     const height = captureResult?.height ?? null;
     const weight = captureResult?.weight ?? null;
     const age = captureResult?.age ?? selectedChild?.umur_bulan ?? null;
-    const haz = captureResult?.haz ?? "—";
-    const statusLabel = captureResult?.status ?? "—";
+    // const haz = captureResult?.haz ?? "—";
+    // const statusLabel = captureResult?.status ?? "—";
     const heightStatus = captureResult?.heightStatus ?? "—";
     const weightStatus = captureResult?.weightStatus ?? "—";
 
@@ -28,41 +28,41 @@ export default function ResultPage(props: PageProps) {
         return Number.isInteger(rounded) ? `${rounded}` : rounded.toFixed(1);
     };
 
-    const badgeTone = (status: string) => {
-        const s = (status || "").toLowerCase();
-        if (s === "—" || !s.trim()) {
-            return {
-                pill: "bg-slate-100 text-slate-700 border border-slate-200",
-                dot: "bg-slate-500",
-            };
-        }
-        if (s.includes("sangat") || s.includes("buruk") || s.includes("kurus") || s.includes("berisiko")) {
-            return {
-                pill: "bg-rose-100 text-rose-800 border border-rose-200",
-                dot: "bg-rose-500",
-            };
-        }
-        if (s.includes("pendek") || s.includes("rentan") || s.includes("moderate") || s.includes("kurang")) {
-            return {
-                pill: "bg-amber-100 text-amber-800 border border-amber-200",
-                dot: "bg-amber-500",
-            };
-        }
-        return {
-            pill: "bg-emerald-100 text-emerald-800 border border-emerald-200",
-            dot: "bg-emerald-500",
-        };
-    };
+    // const badgeTone = (status: string) => {
+    //     const s = (status || "").toLowerCase();
+    //     if (s === "—" || !s.trim()) {
+    //         return {
+    //             pill: "bg-slate-100 text-slate-700 border border-slate-200",
+    //             dot: "bg-slate-500",
+    //         };
+    //     }
+    //     if (s.includes("sangat") || s.includes("buruk") || s.includes("kurus") || s.includes("berisiko")) {
+    //         return {
+    //             pill: "bg-rose-100 text-rose-800 border border-rose-200",
+    //             dot: "bg-rose-500",
+    //         };
+    //     }
+    //     if (s.includes("pendek") || s.includes("rentan") || s.includes("moderate") || s.includes("kurang")) {
+    //         return {
+    //             pill: "bg-amber-100 text-amber-800 border border-amber-200",
+    //             dot: "bg-amber-500",
+    //         };
+    //     }
+    //     return {
+    //         pill: "bg-emerald-100 text-emerald-800 border border-emerald-200",
+    //         dot: "bg-emerald-500",
+    //     };
+    // };
 
-    const renderBadge = (value: string) => {
-        const tone = badgeTone(value);
-        return (
-            <span className={`inline-flex items-center gap-2 w-max text-xs font-semibold tracking-wide capitalize px-3.5 py-1.5 rounded-full ${tone.pill}`}>
-                <span className={`h-2 w-2 rounded-full ${tone.dot}`} />
-                {value || "—"}
-            </span>
-        );
-    };
+    // const renderBadge = (value: string) => {
+    //     const tone = badgeTone(value);
+    //     return (
+    //         <span className={`inline-flex items-center gap-2 w-max text-xs font-semibold tracking-wide capitalize px-3.5 py-1.5 rounded-full ${tone.pill}`}>
+    //             <span className={`h-2 w-2 rounded-full ${tone.dot}`} />
+    //             {value || "—"}
+    //         </span>
+    //     );
+    // };
 
     const normalizeStatus = (val: string | null | undefined) => {
         if (!val || val.trim() === "" || val === "—") return null;

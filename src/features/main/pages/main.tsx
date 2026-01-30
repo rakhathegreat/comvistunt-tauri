@@ -1,9 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import DataInput from "../components/data-input";
 import Suggestion from "../components/suggestion";
 import supabase from "@/shared/service/supabase";
 import type { PageProps } from "@/app/types";
 import type { ChildRecord } from "../types";
+import { SettingsToggle } from "../components/settings";
+import { VirtualKeyboard } from "../components/virtual-keyboard";
 
 const RECENT_KEY = "recent_child_search";
 
@@ -15,6 +17,8 @@ export default function MainPage(props: PageProps) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [selected, setSelected] = useState<ChildRecord | null>(null);
+    const [keyboardOpen, setKeyboardOpen] = useState(false);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         try {
@@ -103,6 +107,10 @@ export default function MainPage(props: PageProps) {
         }
     };
 
+    const handleKeyboardChange = (nextValue: string) => {
+        handleChange(nextValue);
+    };
+
     const handleStart = () => {
         if (!query.trim()) {
             setError("Masukkan nama atau NIK terlebih dahulu.");
@@ -112,6 +120,7 @@ export default function MainPage(props: PageProps) {
         const childToUse: ChildRecord = selected ?? { nik: query.trim(), nama: query.trim() };
         setSelectedChild(childToUse);
         setCaptureResult(null);
+        setKeyboardOpen(false);
         setAppState("preview");
     };
 
@@ -126,12 +135,14 @@ export default function MainPage(props: PageProps) {
     }, [selectedChild]);
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen space-y-3 px-4">
+        <div className="flex relative flex-col items-center justify-center h-screen space-y-3 px-4">
+            <SettingsToggle />
             <DataInput
                 value={query}
                 onChange={handleChange}
                 onSubmit={handleStart}
                 loading={loading}
+                onFocus={() => setKeyboardOpen(true)}
             />
             <Suggestion
                 query={query}
@@ -140,6 +151,14 @@ export default function MainPage(props: PageProps) {
                 loading={loading}
                 onSelect={handleSelect}
                 error={error}
+            />
+            <VirtualKeyboard
+                open={keyboardOpen}
+                value={query}
+                onChange={handleKeyboardChange}
+                onClose={() => setKeyboardOpen(false)}
+                onSubmit={handleStart}
+                focusInput={() => inputRef.current?.focus()}
             />
         </div>
     );
