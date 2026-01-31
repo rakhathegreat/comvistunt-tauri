@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button";
 import {
     Drawer,
-    DrawerClose,
     DrawerContent,
     DrawerHeader,
 } from "@/components/ui/drawer";
-import { Delete, Check, X } from "lucide-react";
+import { Delete, Check } from "lucide-react";
 
 type VirtualKeyboardProps = {
     open: boolean;
