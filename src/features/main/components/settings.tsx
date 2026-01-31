@@ -14,7 +14,6 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { getCurrentWebviewWindow } from "@tauri-apps/api/webviewWindow";
-import { Settings } from "lucide-react";
 
 
 export function SettingsToggle() {
@@ -52,7 +51,7 @@ export function SettingsToggle() {
     return (
         <Dialog>
         <DialogTrigger className="absolute top-6 right-4">
-            <Settings className="w-8 h-8 text-gray-400" />
+            <Button variant="default">Settings</Button>
         </DialogTrigger>
         <DialogContent>
             <DialogHeader>
