@@ -77,15 +77,10 @@ export function VirtualKeyboard({
     return (
         <Drawer open={open} onOpenChange={(nextOpen) => !nextOpen && onClose()} dismissible>
             <DrawerContent className="border-t bg-white pb-6 shadow-2xl">
-                <div className="mx-auto w-full max-w-4xl px-4">
+                <div className="mx-auto w-full max-w-4xl px-4 pb-8">
                     <DrawerHeader className="flex items-start justify-between px-0">
                         <div className="space-y-1">
                         </div>
-                        <DrawerClose asChild>
-                            <Button variant="ghost" size="icon" animation className="rounded-full">
-                                <X className="h-5 w-5" />
-                            </Button>
-                        </DrawerClose>
                     </DrawerHeader>
 
                     <div className="bg-slate-50 border border-slate-200 rounded-2xl shadow-inner p-4 flex flex-col gap-3">

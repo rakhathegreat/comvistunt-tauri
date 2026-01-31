@@ -45,7 +45,7 @@ export function CancelButton(props: PageProps) {
 
     return (
         <div className="absolute flex flex-col gap-1 top-4 right-4 z-50">
-            <Button  variant='custom' onClick={handleCancel} animation={true} className="flex-1 py-2 bg-stone-800/70 border border-stone-500 active:bg-stone-800/70 font-normal">Cancel</Button>
+            <Button  variant='custom' onClick={handleCancel} animation={true} className="flex-1 py-3 px-5 bg-stone-800/70 border border-stone-500 active:bg-stone-800/70 font-normal">Cancel</Button>
         </div>
     );
 }
