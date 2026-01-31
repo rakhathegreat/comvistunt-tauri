@@ -51,7 +51,7 @@ export function SettingsToggle() {
 
     return (
         <Dialog>
-        <DialogTrigger className="absolute top-6 -right-5">
+        <DialogTrigger className="absolute top-6 right-4">
             <Settings className="w-8 h-8 text-gray-400" />
         </DialogTrigger>
         <DialogContent>
