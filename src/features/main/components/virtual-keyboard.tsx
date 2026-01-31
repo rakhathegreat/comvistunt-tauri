@@ -3,9 +3,7 @@ import {
     Drawer,
     DrawerClose,
     DrawerContent,
-    DrawerDescription,
     DrawerHeader,
-    DrawerTitle,
 } from "@/components/ui/drawer";
 import { Delete, Check, X } from "lucide-react";
 

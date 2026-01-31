@@ -6,7 +6,6 @@ type CameraStatusProps = {
 };
 
 export function CameraStatus({ child }: CameraStatusProps) {
-    const name = child?.nama ?? "Anak belum dipilih";
     const nik = child?.nik ?? "—";
 
     return (
